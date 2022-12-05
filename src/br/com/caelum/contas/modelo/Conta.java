@@ -15,10 +15,15 @@ public class Conta {
 
 	/**
 	 * Método que indrementa o saldo.
+	 * 
 	 * @param valor
 	 */
 	public void deposita(double valor) {
-		this.saldo += valor;
+		if (valor < 0) {
+			throw new IllegalArgumentException("Você tentou depositar" + " um valor negativo");
+		} else {
+			this.saldo += valor;
+		}
 	}
 
 	public void saca(double valor) {
@@ -33,31 +38,31 @@ public class Conta {
 	public void setTitular(String titular) {
 		this.titular = titular;
 	}
-	
+
 	public void setAgencia(String agencia) {
 		this.agencia = agencia;
 	}
-	
+
 	public String getAgencia() {
 		return this.agencia;
 	}
-	
+
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-	
+
 	public int getNumero() {
 		return this.numero;
 	}
-	
+
 	public String getTitular() {
 		return this.titular;
 	}
-	
+
 	public String getTipo() {
 		return "Conta";
 	}
-	
+
 	public void transfere(double valor, Conta conta) {
 		this.saca(valor);
 		conta.deposita(valor);
